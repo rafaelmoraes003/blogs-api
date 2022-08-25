@@ -17,12 +17,12 @@ const User = (sequelize, DataTypes) => {
         tableName: 'Users',
     });
 
-    // User.associate = (models) => {
-    //     User.hasMany(models.BlogPost,{
-    //         foreignKey: 'userId',
-    //         as: 'blogPosts',
-    //     });
-    // };
+    User.associate = (models) => {
+        User.hasMany(models.BlogPost,{
+            foreignKey: 'userId',
+            as: 'blogPosts',
+        });
+    };
 
     return User;
 };
