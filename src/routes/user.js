@@ -1,8 +1,13 @@
 const express = require('express');
 const userController = require('../controllers/user');
+const { auth } = require('../middlewares/auth');
 
 const user = express.Router();
 
 user.post('/', userController.createUser);
+
+user.use(auth);
+
+user.get('/', userController.getAllUsers);
 
 module.exports = user;
