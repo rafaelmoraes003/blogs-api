@@ -9,5 +9,6 @@ user.post('/', userController.createUser);
 user.use(auth);
 
 user.get('/', userController.getAllUsers);
+user.get('/:id', userController.getUserById);
 
 module.exports = user;
