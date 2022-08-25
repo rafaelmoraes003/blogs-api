@@ -1,6 +1,8 @@
 const express = require('express');
 const loginRoute = require('./routes/login');
 const userRoute = require('./routes/user');
+const categoryRoute = require('./routes/category');
+const { auth } = require('./middlewares/auth');
 
 // ...
 
@@ -12,6 +14,10 @@ app.use(express.json());
 
 app.use('/login', loginRoute);
 app.use('/user', userRoute);
+
+app.use(auth);
+
+app.use('/categories', categoryRoute);
 
 app.use((err, _req, res, _next) => {
     console.log(err.message, '//////////////////');
