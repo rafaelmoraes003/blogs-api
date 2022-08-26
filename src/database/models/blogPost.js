@@ -12,7 +12,10 @@ const BlogPost = (sequelize, DataTypes) => {
             foreignKey: true,
         },
         published: DataTypes.DATE,
-        updated: DataTypes.DATE,
+        updated: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
+        }
     }, {
         timestamps: false,
         tableName: 'BlogPosts',

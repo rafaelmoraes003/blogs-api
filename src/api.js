@@ -17,8 +17,9 @@ app.use('/user', userRoute);
 app.use('/categories', categoryRoute);
 app.use('/post', postRoute);
 
-app.use((_err, _req, res, _next) => {
+app.use((err, _req, res, _next) => {
     const message = 'Server error.';
+    console.log(err.message, '//////////////');
     return res.status(500).json({ message });
 });
 

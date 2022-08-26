@@ -8,5 +8,6 @@ post.use(auth);
 
 post.get('/', postController.getAllPosts);
 post.get('/:id', postController.getPostById);
+post.put('/:id', postController.updatePost);
 
 module.exports = post;
