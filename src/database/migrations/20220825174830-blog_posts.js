@@ -29,6 +29,7 @@ module.exports = {
       published: {
         type: Sequelize.DATE,
         allowNull: false,
+        defaulValue: Sequelize.NOW,
       },
       updated: {
         type: Sequelize.DATE,

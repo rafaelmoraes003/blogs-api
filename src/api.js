@@ -19,7 +19,7 @@ app.use('/post', postRoute);
 
 app.use((err, _req, res, _next) => {
     const message = 'Server error.';
-    console.log(err.message, '//////////////');
+    console.log('////////////', err.message, '//////////////');
     return res.status(500).json({ message });
 });
 
