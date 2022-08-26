@@ -24,6 +24,24 @@ const getPostById = async (req, res, next) => {
     }
 };
 
+const createPost = async (req, res, next) => {
+    const { title, content, categoryIds } = req.body;
+    const { authorization: token } = req.headers;
+    try {
+        const { error, code, data } = await postService.createPost(
+            title, content, categoryIds, token,
+        );
+
+        if (error) {
+            return res.status(error.code).json({ message: error.message });
+        }
+
+        return res.status(code).json(data);
+    } catch (error) {
+        next(error);
+    }
+};
+
 const updatePost = async (req, res, next) => {
     const { id } = req.params;
     const { title, content } = req.body;
@@ -51,6 +69,7 @@ const getPostByTerm = async (req, res, _next) => {
 module.exports = {
     getAllPosts,
     getPostById,
+    createPost,
     updatePost,
     getPostByTerm,
 };
