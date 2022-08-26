@@ -42,8 +42,15 @@ const updatePost = async (req, res, next) => {
     }
 };
 
+const getPostByTerm = async (req, res, _next) => {
+    const { q: searchTerm } = req.query;
+    const { code, data } = await postService.getPostByTerm(searchTerm);
+    return res.status(code).json(data);
+};
+
 module.exports = {
     getAllPosts,
     getPostById,
     updatePost,
+    getPostByTerm,
 };
