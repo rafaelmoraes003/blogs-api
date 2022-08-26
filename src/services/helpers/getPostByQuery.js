@@ -6,7 +6,8 @@ const getPostByQuery = async (term) => {
         where: {
             [Op.or]: [
                 { title: { [Op.substring]: term } },
-                { content: { [Op.substring]: term } }],
+                { content: { [Op.substring]: term } },
+            ],
         },
         include: [
             { model: User, as: 'user', attributes: { exclude: ['password'] } },

@@ -26,10 +26,10 @@ const getPostById = async (req, res, next) => {
 
 const createPost = async (req, res, next) => {
     const { title, content, categoryIds } = req.body;
-    const { authorization: token } = req.headers;
+    const { tokenId } = req;
     try {
         const { error, code, data } = await postService.createPost(
-            title, content, categoryIds, token,
+            title, content, categoryIds, tokenId,
         );
 
         if (error) {
@@ -45,10 +45,10 @@ const createPost = async (req, res, next) => {
 const updatePost = async (req, res, next) => {
     const { id } = req.params;
     const { title, content } = req.body;
-    const { authorization: token } = req.headers;
+    const { tokenId } = req;
 
     try {
-        const { error, code, data } = await postService.updatePost(id, title, content, token);
+        const { error, code, data } = await postService.updatePost(id, title, content, tokenId);
 
         if (error) {
             return res.status(error.code).json({ message: error.message });
@@ -62,9 +62,9 @@ const updatePost = async (req, res, next) => {
 
 const deletePost = async (req, res, next) => {
     const { id } = req.params;
-    const { authorization: token } = req.headers;
+    const { tokenId } = req;
     try {
-        const { error, code } = await postService.deletePost(id, token);
+        const { error, code } = await postService.deletePost(id, tokenId);
 
         if (error) {
             return res.status(error.code).json({ message: error.message });
@@ -76,10 +76,14 @@ const deletePost = async (req, res, next) => {
     }
 };
 
-const getPostByTerm = async (req, res, _next) => {
+const getPostByTerm = async (req, res, next) => {
     const { q: searchTerm } = req.query;
-    const { code, data } = await postService.getPostByTerm(searchTerm);
-    return res.status(code).json(data);
+    try {
+        const { code, data } = await postService.getPostByTerm(searchTerm);
+        return res.status(code).json(data);
+    } catch (error) {
+       next(error); 
+    }
 };
 
 module.exports = {

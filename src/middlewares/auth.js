@@ -8,7 +8,8 @@ const auth = (req, res, next) => {
             return res.status(401).json({ message: 'Token not found' });
         }
 
-        jwt.verify(token, process.env.JWT_SECRET);
+        const { id } = jwt.verify(token, process.env.JWT_SECRET);
+        req.tokenId = id;
         next();
     } catch (error) {
         return res.status(401).json({ message: 'Expired or invalid token' });

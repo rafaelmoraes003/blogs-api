@@ -40,9 +40,9 @@ const getUserById = async (req, res, next) => {
 };
 
 const deleteMyUser = async (req, res, next) => {
-    const { authorization: token } = req.headers;
+    const { tokenId } = req;
     try {
-        const { code } = await userService.deleteMyUser(token);
+        const { code } = await userService.deleteMyUser(tokenId);
         return res.status(code).end();
     } catch (error) {
         next(error);

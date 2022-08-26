@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const { BlogPost } = require('../database/models');
 const { getPost } = require('./helpers/getPost');
 const { getPostByQuery } = require('./helpers/getPostByQuery');
@@ -17,9 +16,7 @@ const getPostById = async (id) => {
     return { code: 200, data: post };
 };
 
-const createPost = async (title, content, categoryIds, token) => {
-    const { id } = jwt.verify(token, process.env.JWT_SECRET);
-
+const createPost = async (title, content, categoryIds, tokenId) => {
     if (!title || !content || !categoryIds) {
         return { error: { code: 400, message: 'Some required fields are missing' } };
     }
@@ -29,20 +26,18 @@ const createPost = async (title, content, categoryIds, token) => {
         return { error: { code: 400, message: '"categoryIds" not found' } };
     }
 
-    const { dataValues } = await createTransaction(title, content, categoryIds, id);
+    const { dataValues } = await createTransaction(title, content, categoryIds, tokenId);
     return { code: 201, data: dataValues };
 };
 
-const updatePost = async (id, title, content, token) => {
+const updatePost = async (id, title, content, tokenId) => {
     if (!title || !content) {
         return { error: { code: 400, message: 'Some required fields are missing' } };
     }
 
     const post = await getPost('findOne', id);
 
-    const { email } = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (post.user.email !== email) {
+    if (post.user.id !== tokenId) {
         return { error: { code: 401, message: 'Unauthorized user' } };
     }
 
@@ -52,9 +47,7 @@ const updatePost = async (id, title, content, token) => {
     return { code: 200, data: newPost };
 };
 
-const deletePost = async (id, token) => {
-    const { id: tokenId } = jwt.verify(token, process.env.JWT_SECRET);
-
+const deletePost = async (id, tokenId) => {
     const post = await getPost('findOne', id);
 
     if (!post) {
