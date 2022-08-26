@@ -38,8 +38,17 @@ const getUserById = async (id) => {
     return { code: 200, data: user };
 };
 
+const deleteMyUser = async (token) => {
+    const { id } = jwt.verify(token, process.env.JWT_SECRET);
+
+    await User.destroy({ where: { id } });
+
+    return { code: 204 };
+};
+
 module.exports = {
     createUser,
     getAllUsers,
     getUserById,
+    deleteMyUser,
 };
