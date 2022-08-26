@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { BlogPost } = require('../database/models');
 const { getPost } = require('./helpers/getPost');
+const { getPostByQuery } = require('./helpers/getPostByQuery');
 require('dotenv').config();
 
 const getAllPosts = async () => {
@@ -33,8 +34,21 @@ const updatePost = async (id, title, content, token) => {
     return { code: 200, data: newPost };
 };
 
+const getPostByTerm = async (term) => {
+    if (!term) {
+        const allPosts = await getPost('findAll');
+        return { code: 200, data: allPosts };
+    }
+
+    const post = await getPostByQuery(term);
+
+    if (!post) return { code: 200, data: [] };
+    return { code: 200, data: post };
+};
+
 module.exports = {
     getAllPosts,
     getPostById,
     updatePost,
+    getPostByTerm,
 };
