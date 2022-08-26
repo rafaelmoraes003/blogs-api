@@ -52,6 +52,23 @@ const updatePost = async (id, title, content, token) => {
     return { code: 200, data: newPost };
 };
 
+const deletePost = async (id, token) => {
+    const { id: tokenId } = jwt.verify(token, process.env.JWT_SECRET);
+
+    const post = await getPost('findOne', id);
+
+    if (!post) {
+        return { error: { code: 404, message: 'Post does not exist' } };
+    }
+
+    if (post.user.id !== tokenId) {
+        return { error: { code: 401, message: 'Unauthorized user' } };
+    }
+
+    await BlogPost.destroy({ where: { id } });
+    return { code: 204 };
+};
+
 const getPostByTerm = async (term) => {
     if (!term) {
         const allPosts = await getPost('findAll');
@@ -69,5 +86,6 @@ module.exports = {
     getPostById,
     createPost,
     updatePost,
+    deletePost,
     getPostByTerm,
 };
