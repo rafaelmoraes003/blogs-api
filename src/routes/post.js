@@ -7,5 +7,6 @@ const post = express.Router();
 post.use(auth);
 
 post.get('/', postController.getAllPosts);
+post.get('/:id', postController.getPostById);
 
 module.exports = post;
