@@ -60,6 +60,22 @@ const updatePost = async (req, res, next) => {
     }
 };
 
+const deletePost = async (req, res, next) => {
+    const { id } = req.params;
+    const { authorization: token } = req.headers;
+    try {
+        const { error, code } = await postService.deletePost(id, token);
+
+        if (error) {
+            return res.status(error.code).json({ message: error.message });
+        }
+
+        return res.status(code).end();
+    } catch (error) {
+        next(error);
+    }
+};
+
 const getPostByTerm = async (req, res, _next) => {
     const { q: searchTerm } = req.query;
     const { code, data } = await postService.getPostByTerm(searchTerm);
@@ -71,5 +87,6 @@ module.exports = {
     getPostById,
     createPost,
     updatePost,
+    deletePost,
     getPostByTerm,
 };
