@@ -11,4 +11,6 @@ user.use(auth);
 user.get('/', userController.getAllUsers);
 user.get('/:id', userController.getUserById);
 
+user.delete('/me', userController.deleteMyUser);
+
 module.exports = user;
