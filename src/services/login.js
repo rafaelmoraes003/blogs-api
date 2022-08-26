@@ -15,7 +15,7 @@ const login = async (email, password) => {
         return { error: { code: 400, message: 'Invalid fields' } };
     }
 
-    const token = jwt.sign({ email }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: user.id, email }, process.env.JWT_SECRET);
 
     return { code: 200, token };
 };
