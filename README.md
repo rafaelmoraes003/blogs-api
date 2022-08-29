@@ -2,7 +2,9 @@
 
 ###
 
-<p align="left">Neste projeto  foi criada uma API e um banco de dados para a produção de conteúdo para um blog.<br><br>A  aplicação foi desenvolvida em Node.js usando o pacote Sequelize com um banco de dados MySQL para fazer um CRUD de posts seguindo os princípios do REST.<br><br>O objetivo do projeto era conseguir utilizar o Sequelize para criação, povoamento, realização de operações de leitura, criação, atualização e exclusão no banco de dados e criação de relacionamentos entre tabelas.<br><br>Para garantir a segurança e integridade da aplicação, a autenticação e autorização dos endpoints foram feitas através do JSON Web Token.</p>
+<p align="left">Neste projeto  foi criada uma API e um banco de dados para a produção de conteúdo para um blog.<br><br>A  aplicação foi desenvolvida em Node.js usando o pacote Sequelize com um banco de dados MySQL para fazer um CRUD de posts seguindo os princípios do REST.<br><br>Nela, é possível acessar endpoints que trazem informações sobre usuários, publicações e categorias de temas de publicações, além de ser possível criar novos dados sobre sobre os mesmos, atualizá-los e deletá-los.<br><br>O objetivo do projeto era conseguir utilizar o Sequelize para criação, povoamento, realização de operações de leitura, criação, atualização e exclusão no banco de dados e criação de relacionamentos entre tabelas<br><br>Para garantir a segurança e integridade da aplicação, a autenticação e autorização dos endpoints foram feitas através do JSON Web Token.</p>
+
+###
 
 ###
 
