@@ -47,3 +47,34 @@ Faça o clone da aplicação usando o comando `git clone`. Após isso, entre na 
 `npm run seed`
 
 ###
+
+<h2 align="left">Endpoints</h2>
+
+A API possui 4 endpoints principais: `/user, /login, /categories e /post`.
+
+Sobre o `/login`, ele possui 1 endpoint:
+
+- `POST` ( / ) - Fazer login com um usuário já existente;
+
+Sobre o `/user`, ele possui 4 endpoints:
+
+- `POST` ( / ) - Criação de novo usuário;
+- `GET` ( / ) - Listar todos os usuários do sistema;
+- `GET` ( /id ) - Listar um usuário baseado em seu id;
+- `DELETE` ( /me ) - Deletar o usuário dono da sessão;
+
+Sobre o `/post`, ele possui 6 endpoints:
+
+- `GET` ( / ) - Listar todos os posts do blog;
+- `GET` ( /search?q=termo ) - Listar o post ( ou os posts ) que possuem determinado termo incluso em seu título ou conteúdo;
+- `GET` ( /id ) - Listar um post baseado em seu id;
+- `POST` ( / ) - Criação de um novo post;
+- `PUT` ( /id ) - Atualizar um post existente baseado em seu id se o usuário em sessão for o dono desse post;
+- `DELETE` ( /id ) - Deletar um post baseado em seu id se o usuário em sessão for o dono desse post;
+
+Sobre o `/categories`, ele possui 2 endpoints:
+
+- `GET` ( / ) - Listar categorias de posts;
+- `POST` ( / ) - Criação de nova categoria para posts;
+
+`OBS:` Todos os endpoints ( exceto POST ( /login e /user) necessitam de autorização via JWT. Para adquirir esse token, é necessário criar um usuário ou efetuar login com um usuário já existente e colocar esse token no header Authorization da requisição.
