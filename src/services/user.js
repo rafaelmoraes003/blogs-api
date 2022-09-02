@@ -12,9 +12,9 @@ const createUser = async (displayName, email, password, image) => {
 
     if (user) return { error: { code: 409, message: 'User already registered' } };
 
-    await User.create({ displayName, email, password, image });
+    const { dataValues: { id } } = await User.create({ displayName, email, password, image });
 
-    const token = jwt.sign({ displayName, email, image }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id, displayName, email, image }, process.env.JWT_SECRET);
 
     return { code: 201, token };
 };
