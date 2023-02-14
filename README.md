@@ -2,7 +2,7 @@
 
 ###
 
-<p align="left">In this project an API and a database were created for the production of content for a blog.<br><br>The application was developed in Node.js using the Sequelize package with a MySQL database to make a CRUD of posts following the principles of REST.<br><br>In it, it is possible to access endpoints that bring information about users, publications and categories of publication themes, in addition to being possible to create new data about them, update them and delete them. los.<br><br>The objective of the project was to be able to use Sequelize to create, populate, perform read, create, update and delete operations in the database and create relationships between tables<br><br>To to guarantee the security and integrity of the application, the authentication and authorization of the endpoints were done through the JSON Web Token.</p>
+<p align="left">In this project an API and a database were created for the production of content for a blog.<br><br>The application was developed in Node.js using the Sequelize package with a MySQL database to make a CRUD of posts following the principles of REST.<br><br>In it, it is possible to access endpoints that bring information about users, publications and categories of publication themes, in addition to being possible to create new data about them, update them and delete them. los.<br><br>The objective of the project was to be able to use Sequelize to create, populate, perform read, create, update and delete operations in the database and create relationships between tables<br><br>To to guarantee the security and integrity of the application, the authentication and authorization of the endpoints were done through the JSON Web Token.</p> 
 
 ###
 
